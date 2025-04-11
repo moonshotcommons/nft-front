@@ -9,7 +9,13 @@ import { config } from './wagmi.ts'
 
 import './index.css'
 
-globalThis.Buffer = Buffer
+declare global {
+  interface Window {
+    Buffer: typeof Buffer;
+  }
+}
+
+window.Buffer = Buffer
 
 const queryClient = new QueryClient()
 
