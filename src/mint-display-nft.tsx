@@ -64,17 +64,31 @@ function MindAndDisplayNFT() {
             <div>NAME: {String(name?.result || '')}</div>
             <div>SYMBOL: {String(symbol?.result || '')}</div>
             <div>MINTED AMOUNT: {Number(nftId?.result || 0)}</div>
-
+            <div className="nft-image">
+                <img src="/img/hackQuack_genesis.svg" alt="HackQuack Genesis NFT" />
+            </div>
+        
             <form onSubmit={submit}>
-                <input name="yourNFT" placeholder="69420" required />
+                <input name="yourNFT" placeholder="0x..." required />
                 <button
                     disabled={writeIsPending}
                     type="submit"
                 >
-                    Mint
                     {writeIsPending ? 'Confirming...' : 'Mint'}
                 </button>
-                {hash && <div>Transaction Hash: {hash}</div>}
+                {hash && (
+                  <div>
+                    Transaction Hash:{' '}
+                    <a 
+                      href={`https://pharosscan.xyz/tx/${hash}`} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="minimal-link"
+                    >
+                      {hash.slice(0, 6)}...
+                    </a>
+                  </div>
+                )}
                 {isConfirming && <div>Waiting for confirmation...</div>}
                 {isConfirmed && <div>Transaction confirmed.</div>}
                 {writeError && (

@@ -33,14 +33,16 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 0;
-  margin-bottom: 2.5rem;
+  padding: 1.25rem 2rem;
+  margin-bottom: 2rem;
   border-bottom: 1px solid var(--minimal-border);
+  background-color: var(--minimal-background);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .minimal-title {
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--minimal-primary);
   margin: 0;
   letter-spacing: -0.5px;
@@ -49,21 +51,16 @@ body {
 .minimal-account {
   display: flex;
   align-items: center;
-  gap: 2rem;
-}
-
-.account-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  gap: 1.25rem;
 }
 
 .account-status {
   display: flex;
-  gap: 1rem;
+  gap: 1.25rem;
   padding: 0.5rem 1rem;
   background-color: var(--minimal-surface);
-  border-radius: 4px;
+  border-radius: 6px;
+  border: 1px solid var(--minimal-border);
 }
 
 .status-item {
@@ -73,61 +70,84 @@ body {
 }
 
 .status-label {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--minimal-text-light);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
 }
 
 .status-value {
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   color: var(--minimal-text);
-  font-weight: 400;
+  font-weight: 500;
+}
+
+.account-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--minimal-surface);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--minimal-border);
+  min-width: 120px;
 }
 
 .address {
   font-family: 'SF Mono', 'Roboto Mono', monospace;
-  background-color: var(--minimal-surface);
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  margin-bottom: 0.75rem;
   color: var(--minimal-text);
-  font-size: 0.875rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 0;
+  padding: 0.25rem 0;
 }
 
 .connect-buttons {
   display: flex;
   gap: 0.75rem;
+  background-color: var(--minimal-surface);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--minimal-border);
+  min-width: 120px;
+  justify-content: center;
 }
 
 .minimal-button {
-  background-color: var(--minimal-surface);
+  background-color: var(--minimal-background);
   color: var(--minimal-text);
   border: 1px solid var(--minimal-border);
-  padding: 0.625rem 1.25rem;
+  padding: 0.5rem 1rem;
   font-family: inherit;
-  font-size: 0.875rem;
-  font-weight: 400;
+  font-size: 0.85rem;
+  font-weight: 500;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 6px;
   transition: all 0.2s ease;
 }
 
 .minimal-button:hover {
   background-color: var(--minimal-background);
+  border-color: var(--minimal-primary);
 }
 
 .minimal-main {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
+  grid-template-columns: 1fr 3fr;
+  gap: 2rem;
+  padding: 0 1rem;
 }
 
 .minimal-card {
   background-color: var(--minimal-surface);
   border: 1px solid var(--minimal-border);
-  border-radius: 4px;
-  padding: 2rem;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  height: fit-content;
 }
 
 .minimal-subtitle {
@@ -150,7 +170,7 @@ body {
   flex-direction: column;
   background-color: var(--minimal-background);
   padding: 1.25rem;
-  border-radius: 4px;
+  border-radius: 6px;
   border: 1px solid var(--minimal-border);
 }
 
@@ -165,49 +185,96 @@ body {
 .stat-value {
   font-size: 1.125rem;
   color: var(--minimal-text);
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .minimal-nft-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  padding: 1rem;
 }
 
-.minimal-nft-info {
+.minimal-nft-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.25rem;
-  margin-bottom: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
 }
 
-.nft-item {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--minimal-background);
-  padding: 1.25rem;
-  border-radius: 4px;
+.minimal-nft-item {
+  background: var(--minimal-surface);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   border: 1px solid var(--minimal-border);
 }
 
-.nft-label {
-  font-size: 0.75rem;
-  color: var(--minimal-text-light);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.5rem;
+.minimal-nft-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.nft-value {
-  font-size: 1.125rem;
+.nft-image-container {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  background: var(--minimal-background);
+}
+
+.nft-image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nft-details {
+  padding: 1rem;
+}
+
+.nft-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
   color: var(--minimal-text);
-  font-weight: 400;
+}
+
+.nft-attributes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.nft-attribute {
+  font-size: 0.9rem;
+  color: var(--minimal-text-secondary);
+}
+
+.nft-owner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--minimal-border);
+}
+
+.owner-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--minimal-background);
+}
+
+.owner-address {
+  font-size: 0.9rem;
+  color: var(--minimal-text-secondary);
 }
 
 .minimal-mint-form {
   background-color: var(--minimal-background);
-  padding: 2rem;
-  border-radius: 4px;
+  padding: 1.5rem;
+  border-radius: 6px;
   border: 1px solid var(--minimal-border);
 }
 
@@ -235,17 +302,17 @@ body {
 .form-group label {
   font-size: 0.75rem;
   color: var(--minimal-text-light);
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .minimal-input {
   background-color: var(--minimal-surface);
   border: 1px solid var(--minimal-border);
   color: var(--minimal-text);
-  padding: 0.875rem;
+  padding: 0.75rem;
   font-family: inherit;
   font-size: 0.875rem;
-  border-radius: 4px;
+  border-radius: 6px;
   outline: none;
   transition: all 0.2s ease;
 }
@@ -256,13 +323,13 @@ body {
 
 .minimal-mint-button {
   margin-top: 1.25rem;
-  padding: 0.875rem;
+  padding: 0.75rem;
   font-size: 0.875rem;
   background-color: var(--minimal-accent);
   color: white;
   border: none;
-  border-radius: 4px;
-  font-weight: 400;
+  border-radius: 6px;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -280,7 +347,7 @@ body {
   margin-top: 2rem;
   padding: 1.25rem;
   background-color: var(--minimal-surface);
-  border-radius: 4px;
+  border-radius: 6px;
   border: 1px solid var(--minimal-border);
 }
 
@@ -322,7 +389,7 @@ body {
   color: var(--minimal-error);
   font-size: 0.875rem;
   background-color: #fff5f5;
-  border-radius: 4px;
+  border-radius: 6px;
   border: 1px solid var(--minimal-error);
 }
 
@@ -336,13 +403,13 @@ body {
 }
 
 /* 响应式设计 */
-@media (min-width: 768px) {
+@media (max-width: 1024px) {
   .minimal-main {
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr;
   }
   
-  .minimal-nft-container {
-    grid-column: 1 / -1;
+  .minimal-card {
+    margin-bottom: 2rem;
   }
 }
 
@@ -357,28 +424,4 @@ body {
     width: 100%;
     justify-content: flex-end;
   }
-}
-
-.minimal-nft-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.25rem;
-  margin-top: 2rem;
-}
-
-.minimal-nft-item {
-  background-color: var(--minimal-surface);
-  border: 1px solid var(--minimal-border);
-  border-radius: 4px;
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.minimal-nft-item .nft-item {
-  background-color: var(--minimal-background);
-  padding: 0.75rem;
-  border-radius: 4px;
-  border: 1px solid var(--minimal-border);
 } 
