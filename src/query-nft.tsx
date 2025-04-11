@@ -65,18 +65,26 @@ export default function QueryNFT() {
         {nftInfos.map((nft) => (
           <div key={nft.nftId} className="minimal-nft-item">
             <div className="nft-image-container">
-              <img src="/img/hackQuack_genesis.svg" alt={`NFT #${nft.nftId}`} />
+              <a 
+                href={`https://pharosscan.xyz/token/${wagmiContractConfig.address}/instance/${nft.nftId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src="/img/hackQuack_genesis.svg" alt={`NFT #${nft.nftId}`} />
+              </a>
             </div>
             <div className="nft-details">
               <h3 className="nft-name">HackQuack #{nft.nftId}</h3>
-              <div className="nft-attributes">
-                <div className="nft-attribute">稀有度: 传奇</div>
-                <div className="nft-attribute">类型: Genesis</div>
-              </div>
               <div className="nft-owner">
-                <div className="owner-avatar"></div>
+                <span className="owner-label">Minter:</span>
                 <span className="owner-address">
                   {nft.owner ? `${nft.owner.slice(0, 6)}...${nft.owner.slice(-4)}` : '加载中...'}
+                </span>
+              </div>
+              <div className="nft-contract">
+                <span className="contract-label">合约地址:</span>
+                <span className="contract-address">
+                  {nft.participantContract ? `${nft.participantContract.slice(0, 6)}...${nft.participantContract.slice(-4)}` : '加载中...'}
                 </span>
               </div>
             </div>

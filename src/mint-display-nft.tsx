@@ -50,52 +50,92 @@ function MindAndDisplayNFT() {
 
     const [nftId, symbol, name] = data || []
 
-    if (isPending) return <div>Loading...</div>
+    if (isPending) return <div className="minimal-loading">加载中...</div>
 
     if (error)
         return (
-            <div>
-                Error: {(error as BaseError).shortMessage || error.message}
+            <div className="minimal-error">
+                错误: {(error as BaseError).shortMessage || error.message}
             </div>
         )
 
     return (
-        <>
-            <div>NAME: {String(name?.result || '')}</div>
-            <div>SYMBOL: {String(symbol?.result || '')}</div>
-            <div>MINTED AMOUNT: {Number(nftId?.result || 0)}</div>
-            <div className="nft-image">
+        <div className="minimal-mint-container">
+            <div className="minimal-mint-info">
+            <div className="mint-info-item">
+                    <span className="mint-info-label">主合约地址:</span>
+                    <span className="mint-info-value">
+                        <a 
+                            href={`https://pharosscan.xyz/token/${wagmiContractConfig.address}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="minimal-link"
+                        >
+                            {wagmiContractConfig.address.slice(0, 6)}...{wagmiContractConfig.address.slice(-4)}
+                        </a>
+                    </span>
+                </div>
+                <div className="mint-info-item">
+                    <span className="mint-info-label">名称:</span>
+                    <span className="mint-info-value">{String(name?.result || '')}</span>
+                </div>
+                <div className="mint-info-item">
+                    <span className="mint-info-label">符号:</span>
+                    <span className="mint-info-value">{String(symbol?.result || '')}</span>
+                </div>
+                <div className="mint-info-item">
+                    <span className="mint-info-label">已铸造数量:</span>
+                    <span className="mint-info-value">{Number(nftId?.result || 0)}</span>
+                </div>                
+            </div>
+            
+            <div className="mint-nft-preview">
                 <img src="/img/hackQuack_genesis.svg" alt="HackQuack Genesis NFT" />
             </div>
         
-            <form onSubmit={submit}>
-                <input name="yourNFT" placeholder="0x..." required />
+            <form onSubmit={submit} className="minimal-mint-form">
+                <div className="form-group">
+                    <input 
+                        id="yourNFT"
+                        name="yourNFT" 
+                        placeholder="NFT 合约地址" 
+                        required 
+                        className="minimal-input"
+                    />
+                </div>
                 <button
+                    className="minimal-mint-button"
                     disabled={writeIsPending}
                     type="submit"
                 >
-                    {writeIsPending ? 'Confirming...' : 'Mint'}
+                    {writeIsPending ? '确认中...' : '铸造 NFT'}
                 </button>
+                
                 {hash && (
-                  <div>
-                    Transaction Hash:{' '}
-                    <a 
-                      href={`https://pharosscan.xyz/tx/${hash}`} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="minimal-link"
-                    >
-                      {hash.slice(0, 6)}...
-                    </a>
+                  <div className="transaction-status">
+                    <div className="tx-hash">
+                      交易哈希:{' '}
+                      <a 
+                        href={`https://pharosscan.xyz/tx/${hash}`} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="minimal-link"
+                      >
+                        {hash.slice(0, 6)}...{hash.slice(-4)}
+                      </a>
+                    </div>
                   </div>
                 )}
-                {isConfirming && <div>Waiting for confirmation...</div>}
-                {isConfirmed && <div>Transaction confirmed.</div>}
+                
+                {isConfirming && <div className="tx-confirming">等待确认中...</div>}
+                {isConfirmed && <div className="tx-confirmed">交易已确认</div>}
                 {writeError && (
-                    <div>Error: {(writeError as BaseError).shortMessage || writeError.message}</div>
+                    <div className="tx-error">
+                        错误: {(writeError as BaseError).shortMessage || writeError.message}
+                    </div>
                 )}
             </form>
-        </>
+        </div>
     )
 }
 
