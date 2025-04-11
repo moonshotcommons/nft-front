@@ -193,8 +193,16 @@ body {
   align-items: stretch;
 }
 
-.minimal-section {
+.minimal-section:first-child {
   flex: 1;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  max-width: 25%;
+}
+
+.minimal-section:last-child {
+  flex: 3;
   min-height: 400px;
   display: flex;
   flex-direction: column;
