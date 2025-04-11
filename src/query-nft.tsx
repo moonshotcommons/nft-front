@@ -30,12 +30,12 @@ export default function QueryNFT() {
         ...wagmiContractConfig,
         functionName: 'ownerOf',
         args: [BigInt(index + 1)],
-      },
+      } as any,
       {
         ...wagmiContractConfig,
         functionName: 'tokenURI',
         args: [BigInt(index + 1)],
-      }
+      } as any
     ]),
   })
 
@@ -46,7 +46,7 @@ export default function QueryNFT() {
     refetchNFTData()
   }, [blockNumber])
 
-  const nftInfos: NFTInfo[] = participants.map((participant, index) => {
+  const nftInfos: NFTInfo[] = participants.map((_, index) => {
     const nftId = index + 1
     const ownerData = nftData?.[index * 2]
     const tokenURIData = nftData?.[index * 2 + 1]
