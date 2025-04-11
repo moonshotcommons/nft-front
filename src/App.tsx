@@ -1,5 +1,7 @@
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
-import ReadContract from './mint-nft.tsx'
+import ParticipantNFT from './mint-display-nft.tsx'
+import QueryNFT from './query-nft.tsx'
+import './App.css'
 
 function App() {
   const account = useAccount()
@@ -7,44 +9,56 @@ function App() {
   const { disconnect } = useDisconnect()
 
   return (
-    <>
-      <div>
-        <h2>Account</h2>
-
-        <div>
-          status: {account.status}
-          <br />
-          addresses: {JSON.stringify(account.addresses)}
-          <br />
-          chainId: {account.chainId}
+    <div className="minimal-container">
+      <header className="minimal-header">
+        <h1 className="minimal-title">NFT Garden</h1>
+        <div className="minimal-account">
+          <div className="account-status">
+            <div className="status-item">
+              <span className="status-label">Status</span>
+              <span className="status-value">{account.status}</span>
+            </div>
+            <div className="status-item">
+              <span className="status-label">Chain ID</span>
+              <span className="status-value">{account.chainId}</span>
+            </div>
+          </div>
+          {account.status === 'connected' ? (
+            <div className="account-info">
+              <div className="address">{account.addresses?.[0]?.slice(0, 6)}...{account.addresses?.[0]?.slice(-4)}</div>
+              <button className="minimal-button" onClick={() => disconnect()}>
+                Disconnect
+              </button>
+            </div>
+          ) : (
+            <div className="connect-buttons">
+              {connectors.map((connector) => (
+                <button
+                  key={connector.uid}
+                  onClick={() => connect({ connector })}
+                  className="minimal-button"
+                >
+                  {connector.name}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
+      </header>
 
-        {account.status === 'connected' && (
-          <button type="button" onClick={() => disconnect()}>
-            Disconnect
-          </button>
-        )}
-      </div>
+      <main className="minimal-main">
+        <div className="minimal-card">
+          <ParticipantNFT />
+        </div>
+        <div className="minimal-card">
+          <QueryNFT />
+        </div>
+      </main>
 
-      <div>
-        <h2>Connect</h2>
-        {connectors.map((connector) => (
-          <button
-            key={connector.uid}
-            onClick={() => connect({ connector })}
-            type="button"
-          >
-            {connector.name}
-          </button>
-        ))}
-        <div>{status}</div>
-        <div>{error?.message}</div>
-      </div>
-
-      <div>
-        <ReadContract/>
-      </div>
-    </>
+      <footer className="minimal-footer">
+        <p>NFT Garden © 2023</p>
+      </footer>
+    </div>
   )
 }
 
