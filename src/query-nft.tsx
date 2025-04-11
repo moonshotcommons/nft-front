@@ -76,7 +76,7 @@ export default function QueryNFT() {
             <div className="nft-details">
               <h3 className="nft-name">HackQuack #{nft.nftId}</h3>
               <div className="nft-owner">
-                <span className="owner-label">Minter:</span>
+                <span className="owner-label">铸造者:</span>
                 <span className="owner-address">
                   {nft.owner ? `${nft.owner.slice(0, 6)}...${nft.owner.slice(-4)}` : '加载中...'}
                 </span>

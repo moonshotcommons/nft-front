@@ -2,7 +2,6 @@ import { useAccount, useConnect, useDisconnect, useChainId } from 'wagmi'
 import { metaMask } from 'wagmi/connectors'
 import MindAndDisplayNFT from './mint-display-nft'
 import QueryNFT from './query-nft'
-import { wagmiContractConfig } from './contracts'
 import './App.css'
 
 function App() {
@@ -19,7 +18,7 @@ function App() {
     <div className="minimal-app">
       <header className="minimal-header">
         <div className="header-content">
-          <h1 className="minimal-title">HackQuack NFT</h1>
+          <h1 className="minimal-title">Pharos Workshop</h1>
           <div className="account-status">
             <div className="minimal-chain">
               ChainID: {chainId || '未知'}
@@ -58,7 +57,7 @@ function App() {
       </main>
 
       <footer className="minimal-footer">
-        <p>© 2025 HackQuack NFT. All rights reserved.</p>
+        <p>© 2025 Pharos Workshop. All rights reserved.</p>
       </footer>
     </div>
   )
