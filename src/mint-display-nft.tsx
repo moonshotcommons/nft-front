@@ -1,4 +1,4 @@
-import { type BaseError, useReadContracts, useBlockNumber, useWriteContract, useWaitForTransactionReceipt, useReadContract } from 'wagmi'
+import { type BaseError, useReadContracts, useBlockNumber, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { wagmiContractConfig } from './contracts'
 import { useEffect } from 'react'
 import * as React from 'react'
@@ -39,19 +39,7 @@ function MindAndDisplayNFT() {
         }, {
             ...wagmiContractConfig,
             functionName: 'name',
-        }, {
-            ...wagmiContractConfig,
-            functionName: 'allParticipants',
-        }, {
-            ...wagmiContractConfig,
-            functionName: 'allParticipantContracts',
         }]
-    })
-
-    const { data: balance } = useReadContract({
-        ...wagmiContractConfig,
-        functionName: 'ownerOf',
-        args: ['0x03A71968491d55603FFe1b11A9e23eF013f75bCF'],
     })
 
     const { data: blockNumber } = useBlockNumber({ watch: true })
@@ -60,7 +48,7 @@ function MindAndDisplayNFT() {
         refetch()
     }, [blockNumber])
 
-    const [nftId, symbol, name, allParticipants, allParticipantContracts] = data || []
+    const [nftId, symbol, name] = data || []
 
     if (isPending) return <div>Loading...</div>
 
@@ -76,8 +64,6 @@ function MindAndDisplayNFT() {
             <div>NAME: {String(name?.result || '')}</div>
             <div>SYMBOL: {String(symbol?.result || '')}</div>
             <div>MINTED AMOUNT: {Number(nftId?.result || 0)}</div>
-            <div>allParticipants: {String(allParticipants?.result || '')}</div>
-            <div>allParticipantContracts: {String(allParticipantContracts?.result || '')}</div>
 
             <form onSubmit={submit}>
                 <input name="yourNFT" placeholder="69420" required />
