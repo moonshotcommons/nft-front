@@ -62,7 +62,7 @@ function MindAndDisplayNFT() {
     return (
         <div className="minimal-mint-container">
             <div className="minimal-mint-info">
-            <div className="mint-info-item">
+            <div className="mint-info-item highlight">
                     <span className="mint-info-label">主合约地址:</span>
                     <span className="mint-info-value">
                         <a 
@@ -83,14 +83,14 @@ function MindAndDisplayNFT() {
                     <span className="mint-info-label">符号:</span>
                     <span className="mint-info-value">{String(symbol?.result || '')}</span>
                 </div>
-                <div className="mint-info-item">
+                <div className="mint-info-item highlight">
                     <span className="mint-info-label">已铸造数量:</span>
                     <span className="mint-info-value">{Number(nftId?.result || 0)}</span>
                 </div>                
             </div>
             
             <div className="mint-nft-preview">
-                <img src="/img/hackQuack_genesis.svg" alt="HackQuack Genesis NFT" />
+                <img src="/img/nft.svg" alt="HackQuack Genesis NFT" />
             </div>
         
             <form onSubmit={submit} className="minimal-mint-form">
@@ -110,7 +110,9 @@ function MindAndDisplayNFT() {
                 >
                     {writeIsPending ? '确认中...' : '铸造 NFT'}
                 </button>
-                
+            </form>
+            
+            <div className="transaction-status-container">
                 {hash && (
                   <div className="transaction-status">
                     <div className="tx-hash">
@@ -134,7 +136,7 @@ function MindAndDisplayNFT() {
                         错误: {(writeError as BaseError).shortMessage || writeError.message}
                     </div>
                 )}
-            </form>
+            </div>
         </div>
     )
 }

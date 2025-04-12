@@ -70,7 +70,7 @@ export default function QueryNFT() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src="/img/hackQuack_genesis.svg" alt={`NFT #${nft.nftId}`} />
+                <img src="/img/nft.svg" alt={`NFT #${nft.nftId}`} />
               </a>
             </div>
             <div className="nft-details">

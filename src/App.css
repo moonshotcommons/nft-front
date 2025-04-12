@@ -563,4 +563,31 @@ body {
     width: 100%;
     justify-content: flex-end;
   }
+}
+
+.mint-info-item.highlight .mint-info-value {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.mint-info-item.highlight .minimal-link {
+  font-weight: 600;
+  color: var(--minimal-accent);
+}
+
+/* 主合约地址样式 */
+.mint-info-item.highlight:first-child .mint-info-value {
+  font-style: italic;
+  font-weight: normal;
+  color: #4a90e2;
+}
+
+.mint-info-item.highlight:first-child .minimal-link {
+  font-weight: normal;
+  color: #4a90e2;
+}
+
+/* 已铸造数量样式 */
+.mint-info-item.highlight:last-child .mint-info-value {
+  color: #ff3366;
 } 
